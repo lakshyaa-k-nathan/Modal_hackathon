@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Switch } from 'react-native';
 import * as Location from 'expo-location';
+import HazardMap from '@/components/HazardMap';
 
 const BACKEND_URL = process.env.EXPO_PUBLIC_MODAL_ENDPOINT;
 
@@ -69,9 +70,9 @@ export default function HomeScreen() {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Walkable</Text>
 
-      {/* Map Placeholder */}
-      <View style={styles.mapPlaceholder}>
-        <Text style={styles.mapText}>Map UI Integration Area</Text>
+      {/* Map with Hazard Data */}
+      <View style={styles.mapContainer}>
+        <HazardMap />
       </View>
 
       <View style={styles.formCard}>
@@ -133,21 +134,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
-  mapPlaceholder: {
+  mapContainer: {
     width: '100%',
-    height: 250,
-    backgroundColor: '#e0e0e0',
+    height: 400,
     borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
+    overflow: 'hidden',
     marginBottom: 20,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderStyle: 'dashed',
-  },
-  mapText: {
-    color: '#666',
-    fontWeight: '600',
   },
   formCard: {
     backgroundColor: '#fff',
