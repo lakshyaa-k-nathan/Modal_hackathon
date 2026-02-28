@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
 
+const BACKEND_URL = process.env.EXPO_PUBLIC_MODAL_ENDPOINT;
+
 export default function HomeScreen() {
   const [input, setInput] = useState('');
   const [response, setResponse] = useState('');
 
   const handleSubmit = async () => {
+    if (!BACKEND_URL) {
+      setResponse('Missing EXPO_PUBLIC_MODAL_ENDPOINT in frontend env');
+      return;
+    }
+
     try {
-      const res = await fetch('https://modal.com/apps/lakshyaa-k-nathan/main/ap-ZRDUbc8z1FZLTXerD9p8E9', {
+      const res = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ input }),
