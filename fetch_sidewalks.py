@@ -4,7 +4,8 @@ import os
 import numpy as np  # Added for the hazard randomization
 
 # 1. Path to your file
-file_path = "chicagosidewalks/chicagosidewalks.shp"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(base_dir, "chicagosidewalks", "chicagosidewalks.shp")
 
 if not os.path.exists(file_path):
     print("❌ Folder or .shp file not found!")
